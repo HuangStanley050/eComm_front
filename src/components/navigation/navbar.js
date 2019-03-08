@@ -9,6 +9,8 @@ import {
   NavLink
 } from "reactstrap";
 
+import { Link } from "react-router-dom";
+
 const NavBar = () => {
   return (
     <div>
@@ -18,17 +20,17 @@ const NavBar = () => {
         <Collapse navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">
+              <NavLink href>
                 <i
-                  style={{ marginRight: "5px" }}
+                  style={{ marginRight: "10px" }}
                   className="fas fa-shopping-cart"
                 />
                 Shopping Cart
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                <i style={{ marginRight: "5px" }} className="fas fa-tasks" />
+              <NavLink tag={Link} to="/admin">
+                <i style={{ marginRight: "10px" }} className="fas fa-tasks" />
                 Admin
               </NavLink>
             </NavItem>
