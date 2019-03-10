@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actionType from "../../store/actions/actionTypes";
 import {
   Button,
   Form,
@@ -10,6 +12,9 @@ import {
 } from "reactstrap";
 
 class AdminForm extends Component {
+  componentDidMount() {
+    this.props.addProduct();
+  }
   render() {
     return (
       <Container style={{ marginTop: "30px" }}>
@@ -83,4 +88,13 @@ class AdminForm extends Component {
   }
 }
 
-export default AdminForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    addProduct: () => dispatch({ type: actionType.ADD_PRODUCT })
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AdminForm);

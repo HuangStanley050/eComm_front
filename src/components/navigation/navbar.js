@@ -20,7 +20,7 @@ const NavBar = () => {
         <Collapse navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href>
+              <NavLink>
                 <i
                   style={{ marginRight: "10px" }}
                   className="fas fa-shopping-cart"
