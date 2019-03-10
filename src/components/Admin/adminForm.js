@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionType from "../../store/actions/actionTypes";
+import { add_product } from "../../store/actions/productAction";
 import {
   Button,
   Form,
@@ -12,13 +13,43 @@ import {
 } from "reactstrap";
 
 class AdminForm extends Component {
-  componentDidMount() {
+  // componentDidMount() {
+  //   this.props.addProduct();
+  // }
+  state = {
+    title: "",
+    description: "",
+    price: 0,
+    picture: null
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", this.state.title);
+    formData.append("description", this.state.description);
+    formData.append("price", this.state.price);
+    formData.append("file", this.state.picture);
+
+    console.log(formData);
     this.props.addProduct();
-  }
+  };
+
+  handleInput = e => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  };
+
+  fileInputHandler = e => {
+    const file = e.target.files[0];
+    this.setState({ picture: file });
+  };
+
   render() {
     return (
       <Container style={{ marginTop: "30px" }}>
-        <Form style={{ margin: "0 auto" }}>
+        <Form onSubmit={this.handleSubmit} style={{ margin: "0 auto" }}>
           <FormGroup>
             <Label
               style={{ display: "block", textAlign: "center" }}
@@ -27,6 +58,7 @@ class AdminForm extends Component {
               Title
             </Label>
             <Input
+              onChange={this.handleInput}
               style={{ width: "80%", margin: "auto" }}
               type="text"
               name="title"
@@ -42,6 +74,7 @@ class AdminForm extends Component {
               Description
             </Label>
             <Input
+              onChange={this.handleInput}
               style={{ width: "80%", margin: "auto" }}
               type="text"
               name="description"
@@ -57,6 +90,7 @@ class AdminForm extends Component {
               Price
             </Label>
             <Input
+              onChange={this.handleInput}
               style={{ width: "80%", margin: "auto" }}
               type="number"
               name="price"
@@ -72,6 +106,7 @@ class AdminForm extends Component {
               Frame Work Picture
             </Label>
             <Input
+              onChange={this.fileInputHandler}
               style={{ width: "80%", margin: "auto" }}
               type="file"
               name="file"
@@ -82,6 +117,9 @@ class AdminForm extends Component {
               input. It's a bit lighter and easily wraps to a new line.
             </FormText>
           </FormGroup>
+          <div className="row justify-content-center">
+            <Button type="submit">Submit</Button>
+          </div>
         </Form>
       </Container>
     );
@@ -90,7 +128,7 @@ class AdminForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addProduct: () => dispatch({ type: actionType.ADD_PRODUCT })
+    addProduct: () => dispatch(add_product())
   };
 };
 
