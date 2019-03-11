@@ -1,5 +1,6 @@
-import { takeEvery } from "redux-saga/effects";
+import { takeEvery, put } from "redux-saga/effects";
 import * as actionType from "../actions/actionTypes";
+import { add_product_success } from "../actions/productAction";
 import axios from "axios";
 
 function* productSagaWorker(action) {
@@ -14,7 +15,7 @@ function* productSagaWorker(action) {
         "Content-Type": "multipart/form-data"
       }
     });
-    yield console.log(result);
+    yield put(add_product_success());
   } catch (e) {
     console.log(e);
   }

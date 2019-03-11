@@ -6,3 +6,9 @@ export const add_product = productData => {
     productData
   };
 };
+
+export const add_product_success = () => {
+  return {
+    type: actionType.ADD_PRODUCT_SUCCESS
+  };
+};

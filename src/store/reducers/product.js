@@ -11,6 +11,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: true
       };
+    case actionType.ADD_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        loading: false
+      };
     default:
       return state;
   }
