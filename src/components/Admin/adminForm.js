@@ -31,8 +31,9 @@ class AdminForm extends Component {
     formData.append("price", this.state.price);
     formData.append("file", this.state.picture);
 
-    console.log(formData);
-    this.props.addProduct();
+    //console.log(formData);
+
+    this.props.addProduct(formData);
   };
 
   handleInput = e => {
@@ -128,7 +129,7 @@ class AdminForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addProduct: () => dispatch(add_product())
+    addProduct: formData => dispatch(add_product(formData))
   };
 };
 
