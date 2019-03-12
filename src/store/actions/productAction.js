@@ -12,3 +12,16 @@ export const add_product_success = () => {
     type: actionType.ADD_PRODUCT_SUCCESS
   };
 };
+
+export const fetchProductsPage = () => {
+  return {
+    type: actionType.FETCH_PRODUCTSPAGE_START
+  };
+};
+
+export const fetchProductsPage_success = documents => {
+  return {
+    type: actionType.FETCH_PRODUCTSPAGE_SUCCESS,
+    documents
+  };
+};

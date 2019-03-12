@@ -30,8 +30,14 @@ class AdminForm extends Component {
     formData.append("description", this.state.description);
     formData.append("price", this.state.price);
     formData.append("file", this.state.picture);
-
+    this.setState({
+      title: "",
+      description: "",
+      price: 0,
+      picture: null
+    });
     //console.log(formData);
+    document.getElementById("File").value = "";
 
     this.props.addProduct(formData);
   };
@@ -60,6 +66,7 @@ class AdminForm extends Component {
             </Label>
             <Input
               onChange={this.handleInput}
+              value={this.state.title}
               style={{ width: "80%", margin: "auto" }}
               type="text"
               name="title"
@@ -76,6 +83,7 @@ class AdminForm extends Component {
             </Label>
             <Input
               onChange={this.handleInput}
+              value={this.state.description}
               style={{ width: "80%", margin: "auto" }}
               type="text"
               name="description"
@@ -91,6 +99,7 @@ class AdminForm extends Component {
               Price
             </Label>
             <Input
+              value={this.state.price}
               onChange={this.handleInput}
               style={{ width: "80%", margin: "auto" }}
               type="number"

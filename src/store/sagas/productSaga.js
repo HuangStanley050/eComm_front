@@ -1,6 +1,10 @@
 import { takeEvery, put } from "redux-saga/effects";
 import * as actionType from "../actions/actionTypes";
-import { add_product_success } from "../actions/productAction";
+import {
+  add_product_success,
+  fetchProductsPage_success
+} from "../actions/productAction";
+import API from "../../config/api";
 import axios from "axios";
 
 function* productSagaWorker(action) {
@@ -8,8 +12,7 @@ function* productSagaWorker(action) {
   try {
     const result = yield axios({
       method: "post",
-      url:
-        "https://webdevpractice-infamousgodhand.c9users.io:8081/api/file/uploadProduct",
+      url: API.addProduct,
       data: action.productData,
       headers: {
         "Content-Type": "multipart/form-data"
@@ -21,6 +24,17 @@ function* productSagaWorker(action) {
   }
 }
 
+function* fetchSagaWorker(action) {
+  try {
+    const result = yield axios.get(API.fetchProducts);
+    console.log(result);
+    yield put(fetchProductsPage_success(result.data));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export default function* watchProductAdd() {
   yield takeEvery(actionType.ADD_PRODUCT, productSagaWorker);
+  yield takeEvery(actionType.FETCH_PRODUCTSPAGE_START, fetchSagaWorker);
 }

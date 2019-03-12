@@ -20,6 +20,11 @@ const NavBar = () => {
         <Collapse navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
+              <NavLink tag={Link} to="/products">
+                Products
+              </NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink>
                 <i
                   style={{ marginRight: "10px" }}

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/navigation/navbar";
 import AdminForm from "./components/Admin/adminForm";
+import Products from "./components/product/productMain";
 import "./App.css";
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
         <NavBar />
         <Switch>
           <Route path="/admin" component={AdminForm} />
+          <Route path="/products" component={Products} />
         </Switch>
       </div>
     );
