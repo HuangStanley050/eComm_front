@@ -13,9 +13,10 @@ export const add_product_success = () => {
   };
 };
 
-export const fetchProductsPage = () => {
+export const fetchProductsPage = currentPage => {
   return {
-    type: actionType.FETCH_PRODUCTSPAGE_START
+    type: actionType.FETCH_PRODUCTSPAGE_START,
+    currentPage
   };
 };
 

@@ -2,7 +2,8 @@ import * as actionType from "../actions/actionTypes";
 const initialState = {
   loading: false,
   products: [],
-  totalPages: 0
+  totalPages: 0,
+  currentPage: 1
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,16 +20,11 @@ const reducer = (state = initialState, action) => {
         loading: false
       };
     case actionType.FETCH_PRODUCTSPAGE_SUCCESS:
-      let documents = action.documents;
-      let page = documents / 3;
-      page = parseInt(page.toFixed());
-      if (documents % 3) {
-        page += 1;
-      }
       return {
         ...state,
         loading: false,
-        totalPages: page
+        totalPages: action.documents.totalPages,
+        products: [...action.documents.docs]
       };
     default:
       return state;

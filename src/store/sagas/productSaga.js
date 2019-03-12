@@ -26,7 +26,7 @@ function* productSagaWorker(action) {
 
 function* fetchSagaWorker(action) {
   try {
-    const result = yield axios.get(API.fetchProducts);
+    const result = yield axios.get(API.fetchProducts + action.currentPage);
     console.log(result);
     yield put(fetchProductsPage_success(result.data));
   } catch (err) {
