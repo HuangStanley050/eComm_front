@@ -2,20 +2,17 @@ import React from "react";
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 
 const PaginationMain = props => {
+  const Pages = [];
+  for (let i = 1; i <= props.totalPages; i++) {
+    Pages.push(
+      <PaginationItem key={i} onClick={() => props.getPage(i)}>
+        <PaginationLink href="#">{i}</PaginationLink>
+      </PaginationItem>
+    );
+  }
   return (
-    <Pagination style={{display:'flex',justifyContent:'center'}}>
-      <PaginationItem>
-        <PaginationLink href="#">1</PaginationLink>
-      </PaginationItem>
-      <PaginationItem>
-        <PaginationLink href="#">2</PaginationLink>
-      </PaginationItem>
-      <PaginationItem>
-        <PaginationLink href="#">3</PaginationLink>
-      </PaginationItem>
-      <PaginationItem>
-        <PaginationLink href="#">4</PaginationLink>
-      </PaginationItem>
+    <Pagination style={{ display: "flex", justifyContent: "center" }}>
+      {Pages}
     </Pagination>
   );
 };

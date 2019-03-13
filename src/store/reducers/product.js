@@ -26,6 +26,11 @@ const reducer = (state = initialState, action) => {
         totalPages: action.documents.totalPages,
         products: [...action.documents.docs]
       };
+    case actionType.CHANGE_PAGE_NO:
+      return {
+        ...state,
+        currentPage: action.pageNo
+      };
     default:
       return state;
   }

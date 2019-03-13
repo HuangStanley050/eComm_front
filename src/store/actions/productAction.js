@@ -26,3 +26,10 @@ export const fetchProductsPage_success = documents => {
     documents
   };
 };
+
+export const changePage = pageNo => {
+  return {
+    type: actionType.CHANGE_PAGE_NO,
+    pageNo
+  };
+};
