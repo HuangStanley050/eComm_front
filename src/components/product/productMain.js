@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "reactstrap";
 import { connect } from "react-redux";
+import Loader from "../loading/spinner";
 import {
   fetchProductsPage,
   changePage
@@ -29,14 +30,20 @@ class Products extends Component {
   render() {
     const pages = this.props.product.totalPages;
     const { products } = this.props.product;
-    return (
-      <React.Fragment>
-        <Container style={{ marginTop: "5rem" }}>
-          <ProductList products={products} />
-        </Container>
-        <PaginationMain totalPages={pages} getPage={this.changeCurrentPage} />
-      </React.Fragment>
-    );
+    let content;
+    if (this.props.product.loading) {
+      content = <Loader />;
+    } else {
+      content = (
+        <React.Fragment>
+          <Container style={{ marginTop: "5rem" }}>
+            <ProductList products={products} />
+          </Container>
+          <PaginationMain totalPages={pages} getPage={this.changeCurrentPage} />
+        </React.Fragment>
+      );
+    }
+    return content;
   }
 }
 
