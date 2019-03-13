@@ -11,7 +11,9 @@ const PaginationMain = props => {
     );
   }
   return (
-    <Pagination style={{ display: "flex", justifyContent: "center" }}>
+    <Pagination
+      style={{ display: "flex", justifyContent: "center", marginTop: "3rem" }}
+    >
       {Pages}
     </Pagination>
   );

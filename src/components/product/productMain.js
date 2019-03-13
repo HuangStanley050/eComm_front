@@ -6,6 +6,7 @@ import {
   changePage
 } from "../../store/actions/productAction";
 import PaginationMain from "../pagination/paginationmain";
+import ProductList from "./productList";
 
 class Products extends Component {
   componentDidMount() {
@@ -27,10 +28,11 @@ class Products extends Component {
 
   render() {
     const pages = this.props.product.totalPages;
+    const { products } = this.props.product;
     return (
       <React.Fragment>
-        <Container>
-          <h1>Products Page</h1>
+        <Container style={{ marginTop: "5rem" }}>
+          <ProductList products={products} />
         </Container>
         <PaginationMain totalPages={pages} getPage={this.changeCurrentPage} />
       </React.Fragment>
