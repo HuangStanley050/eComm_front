@@ -18,7 +18,18 @@ const Cart = props => {
             return (
               <tr>
                 <td>{item.title}</td>
-                <td>{item.price}</td> <td>{item.quantity}</td>
+                <td>{item.price}</td>
+                <td>
+                  <i
+                    style={{ marginLef: "1rem" }}
+                    className="fas fa-plus-square"
+                  />
+                  {item.quantity}
+                  <i
+                    style={{ marginLeft: "1rem" }}
+                    className="fas fa-minus-square"
+                  />
+                </td>
               </tr>
             );
           })}
