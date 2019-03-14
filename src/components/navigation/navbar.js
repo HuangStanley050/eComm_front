@@ -25,7 +25,7 @@ const NavBar = () => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink>
+              <NavLink tag={Link} to="/cart">
                 <i
                   style={{ marginRight: "10px" }}
                   className="fas fa-shopping-cart"

@@ -6,6 +6,7 @@ import {
   fetchProductsPage,
   changePage
 } from "../../store/actions/productAction";
+import { add_to_cart } from "../../store/actions/cartAction";
 import PaginationMain from "../pagination/paginationmain";
 import ProductList from "./productList";
 
@@ -27,6 +28,10 @@ class Products extends Component {
     this.props.changePage(pageNo);
   };
 
+  addProductToCart = productInfo => {
+    this.props.addToCart(productInfo);
+  };
+
   render() {
     const pages = this.props.product.totalPages;
     const { products } = this.props.product;
@@ -37,7 +42,10 @@ class Products extends Component {
       content = (
         <React.Fragment>
           <Container style={{ marginTop: "5rem" }}>
-            <ProductList products={products} />
+            <ProductList
+              products={products}
+              addToCart={this.addProductToCart}
+            />
           </Container>
           <PaginationMain totalPages={pages} getPage={this.changeCurrentPage} />
         </React.Fragment>
@@ -50,7 +58,8 @@ class Products extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     fetch: currentPage => dispatch(fetchProductsPage(currentPage)),
-    changePage: pageNo => dispatch(changePage(pageNo))
+    changePage: pageNo => dispatch(changePage(pageNo)),
+    addToCart: productInfo => dispatch(add_to_cart(productInfo))
   };
 };
 

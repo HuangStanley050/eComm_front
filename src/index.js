@@ -6,6 +6,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { Provider } from "react-redux";
 import productReducer from "./store/reducers/product";
+import cartReducer from "./store/reducers/cart";
 import productSaga from "./store/sagas/productSaga";
 import "./index.css";
 import App from "./App";
@@ -17,7 +18,8 @@ const composeEnhancers =
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
-  product: productReducer
+  product: productReducer,
+  cart: cartReducer
 });
 
 const store = createStore(

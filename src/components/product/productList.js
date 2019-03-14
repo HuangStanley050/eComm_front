@@ -1,5 +1,6 @@
 import React from "react";
 import API from "../../config/api";
+import { connect } from "react-redux";
 import {
   Row,
   Col,
@@ -8,7 +9,8 @@ import {
   CardBody,
   CardImg,
   CardSubtitle,
-  CardTitle
+  CardTitle,
+  Button
 } from "reactstrap";
 
 const ProductList = props => {
@@ -16,6 +18,8 @@ const ProductList = props => {
     height: "40vh",
     objectFit: "contain"
   };
+  let checkStatus;
+
   return (
     <Row>
       {props.products.map(product => {
@@ -31,8 +35,17 @@ const ProductList = props => {
               />
               <CardBody>
                 <CardTitle>{product.title}</CardTitle>
-                <CardSubtitle>{product.price}</CardSubtitle>
+                <CardSubtitle>$ {product.price}</CardSubtitle>
                 <CardText>{product.description}</CardText>
+                {props.ordered.find(item => item._id === product._id)
+                  ? (checkStatus = true)
+                  : (checkStatus = false)}
+                <Button
+                  disabled={checkStatus}
+                  onClick={() => props.addToCart(product)}
+                >
+                  Add to Cart
+                </Button>
               </CardBody>
             </Card>
           </Col>
@@ -42,4 +55,10 @@ const ProductList = props => {
   );
 };
 
-export default ProductList;
+const mapStateToProps = state => {
+  return {
+    ordered: state.cart.orderedProducts
+  };
+};
+
+export default connect(mapStateToProps)(ProductList);
