@@ -42,7 +42,7 @@ const ProductList = props => {
                   : (checkStatus = false)}
                 <Button
                   disabled={checkStatus}
-                  onClick={() => props.addToCart(product)}
+                  onClick={() => props.addToCart({ ...product, quantity: 1 })}
                 >
                   Add to Cart
                 </Button>
