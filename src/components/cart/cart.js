@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, Container } from "reactstrap";
 import { connect } from "react-redux";
-import { increaseProd } from "../../store/actions/cartAction";
+import { increaseProd, decreaseProd } from "../../store/actions/cartAction";
 
 const Cart = props => {
   return (
@@ -30,6 +30,7 @@ const Cart = props => {
                   <i
                     style={{ marginLeft: "1rem" }}
                     className="fas fa-minus-square"
+                    onClick={() => props.decrease(item)}
                   />
                 </td>
               </tr>
@@ -49,7 +50,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    increase: productInfo => dispatch(increaseProd(productInfo))
+    increase: productInfo => dispatch(increaseProd(productInfo)),
+    decrease: productInfo => dispatch(decreaseProd(productInfo))
   };
 };
 

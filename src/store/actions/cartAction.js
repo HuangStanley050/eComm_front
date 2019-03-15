@@ -13,3 +13,10 @@ export const increaseProd = productInfo => {
     productInfo
   };
 };
+
+export const decreaseProd = productInfo => {
+  return {
+    type: actionType.DECREASE_PRODUCT,
+    productInfo
+  };
+};
