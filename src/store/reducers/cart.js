@@ -1,7 +1,6 @@
 import * as actionType from "../actions/actionTypes";
 const initialState = {
-  orderedProducts: [],
-  quantity: []
+  orderedProducts: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,14 +11,16 @@ const reducer = (state = initialState, action) => {
         orderedProducts: [...state.orderedProducts, action.productInfo]
       };
     case actionType.INCREASE_PRODUCT:
-      //console.log(action.productInfo);
-      // let id = action.productInfo._id;
-      // let products = [...state.orderedProducts];
-      // let foundProduct = products.find(product => product._id === id);
-      // foundProduct.quantity += 1;
-      // console.log(foundProduct);
+      let id = action.productInfo._id;
+      let copiedProducts = [...state.orderedProducts];
+      let foundProduct = copiedProducts.find(product => product._id === id);
+      let copiedIndex = copiedProducts.findIndex(index => index._id === id);
+      foundProduct.quantity += 1;
+      copiedProducts.splice(copiedIndex, 1, foundProduct);
+      //console.log(copiedProducts);
       return {
-        ...state
+        ...state,
+        orderedProducts: [...copiedProducts]
       };
     default:
       return state;
