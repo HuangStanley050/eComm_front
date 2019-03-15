@@ -1,6 +1,7 @@
 import React from "react";
 import { Table, Container } from "reactstrap";
 import { connect } from "react-redux";
+import { increaseProd } from "../../store/actions/cartAction";
 
 const Cart = props => {
   return (
@@ -16,15 +17,16 @@ const Cart = props => {
         <tbody>
           {props.ordered.map(item => {
             return (
-              <tr>
+              <tr key={item._id}>
                 <td>{item.title}</td>
                 <td>{item.price}</td>
                 <td>
                   <i
-                    style={{ marginLef: "1rem" }}
+                    style={{ marginRight: "1rem" }}
                     className="fas fa-plus-square"
+                    onClick={() => props.increase(item)}
                   />
-                  {item.quantity}
+                  <span>{item.quantity}</span>
                   <i
                     style={{ marginLeft: "1rem" }}
                     className="fas fa-minus-square"
@@ -45,4 +47,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch => {
+  return {
+    increase: productInfo => dispatch(increaseProd(productInfo))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);

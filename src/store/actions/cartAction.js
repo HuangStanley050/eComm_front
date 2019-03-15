@@ -6,3 +6,10 @@ export const add_to_cart = productInfo => {
     productInfo
   };
 };
+
+export const increaseProd = productInfo => {
+  return {
+    type: actionType.INCREASE_PRODUCT,
+    productInfo
+  };
+};

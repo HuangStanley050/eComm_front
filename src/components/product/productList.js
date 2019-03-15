@@ -5,7 +5,6 @@ import {
   Row,
   Col,
   Card,
-  CardText,
   CardBody,
   CardImg,
   CardSubtitle,
@@ -36,7 +35,7 @@ const ProductList = props => {
               <CardBody>
                 <CardTitle>{product.title}</CardTitle>
                 <CardSubtitle>$ {product.price}</CardSubtitle>
-                <CardText>{product.description}</CardText>
+
                 {props.ordered.find(item => item._id === product._id)
                   ? (checkStatus = true)
                   : (checkStatus = false)}
