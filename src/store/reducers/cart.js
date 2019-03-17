@@ -80,9 +80,11 @@ const reducer = (state = initialState, action) => {
       id = action.productInfo._id;
       copiedProducts = [...state.orderedProducts];
       final = copiedProducts.filter(item => item._id !== id);
+      price = processPrice(final);
       return {
         ...state,
-        orderedProducts: [...final]
+        orderedProducts: [...final],
+        totalPrice: price
       };
     default:
       return state;
