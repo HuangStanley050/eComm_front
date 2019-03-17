@@ -38,7 +38,9 @@ const Cart = props => {
           })}
         </tbody>
       </Table>
-      <h1 style={{ textAlign: "right" }}>Total: {props.total}</h1>
+      <h1 style={{ marginTop: "3rem", textAlign: "right" }}>
+        Total: {props.total}
+      </h1>
     </Container>
   );
 };

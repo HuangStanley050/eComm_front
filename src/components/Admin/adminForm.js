@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actionType from "../../store/actions/actionTypes";
+//import * as actionType from "../../store/actions/actionTypes";
 import { add_product } from "../../store/actions/productAction";
 import {
   Button,
