@@ -20,3 +20,10 @@ export const decreaseProd = productInfo => {
     productInfo
   };
 };
+
+export const remove_from_cart = productInfo => {
+  return {
+    type: actionType.REMOVE_FROM_CART,
+    productInfo
+  };
+};

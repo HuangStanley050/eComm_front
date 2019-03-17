@@ -1,7 +1,12 @@
 import React from "react";
-import { Table, Container } from "reactstrap";
+import { Table, Container, Button } from "reactstrap";
 import { connect } from "react-redux";
-import { increaseProd, decreaseProd } from "../../store/actions/cartAction";
+import "./cart.css";
+import {
+  increaseProd,
+  decreaseProd,
+  remove_from_cart
+} from "../../store/actions/cartAction";
 
 const Cart = props => {
   return (
@@ -21,17 +26,22 @@ const Cart = props => {
                 <td>{item.title}</td>
                 <td>{item.price}</td>
                 <td>
-                  <i
-                    style={{ marginRight: "1rem" }}
-                    className="fas fa-plus-square"
-                    onClick={() => props.increase(item)}
-                  />
-                  <span>{item.quantity}</span>
-                  <i
-                    style={{ marginLeft: "1rem" }}
-                    className="fas fa-minus-square"
-                    onClick={() => props.decrease(item)}
-                  />
+                  <div>
+                    <div>
+                      <i
+                        className="fas fa-plus-square"
+                        onClick={() => props.increase(item)}
+                      />
+                      <span>{item.quantity}</span>
+                      <i
+                        className="fas fa-minus-square"
+                        onClick={() => props.decrease(item)}
+                      />
+                    </div>
+                    <Button onClick={() => props.remove(item)} color="danger">
+                      Remove
+                    </Button>
+                  </div>
                 </td>
               </tr>
             );
@@ -55,7 +65,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     increase: productInfo => dispatch(increaseProd(productInfo)),
-    decrease: productInfo => dispatch(decreaseProd(productInfo))
+    decrease: productInfo => dispatch(decreaseProd(productInfo)),
+    remove: productInfo => dispatch(remove_from_cart(productInfo))
   };
 };
 

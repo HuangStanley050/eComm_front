@@ -59,12 +59,6 @@ const reducer = (state = initialState, action) => {
 
       final = processProduct(actionType.INCREASE_PRODUCT, id, copiedProducts);
 
-      // price = final
-      //   .map(item => {
-      //     return item.quantity * item.price;
-      //   })
-      //   .reduce((a, b) => a + b, 0);
-
       price = processPrice(final);
 
       return {
@@ -81,6 +75,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         orderedProducts: [...final],
         totalPrice: price
+      };
+    case actionType.REMOVE_FROM_CART:
+      id = action.productInfo._id;
+      copiedProducts = [...state.orderedProducts];
+      final = copiedProducts.filter(item => item._id !== id);
+      return {
+        ...state,
+        orderedProducts: [...final]
       };
     default:
       return state;
