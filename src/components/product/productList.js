@@ -19,6 +19,10 @@ const ProductList = props => {
   };
   let checkStatus;
 
+  const cardTextStyle = {
+    textAlign: "center"
+  };
+
   return (
     <Row>
       {props.products.map(product => {
@@ -33,18 +37,22 @@ const ProductList = props => {
                 alt="Card image cap"
               />
               <CardBody>
-                <CardTitle>{product.title}</CardTitle>
-                <CardSubtitle>$ {product.price}</CardSubtitle>
+                <CardTitle style={cardTextStyle}>{product.title}</CardTitle>
+                <CardSubtitle style={cardTextStyle}>
+                  $ {product.price}
+                </CardSubtitle>
 
                 {props.ordered.find(item => item._id === product._id)
                   ? (checkStatus = true)
                   : (checkStatus = false)}
-                <Button
-                  disabled={checkStatus}
-                  onClick={() => props.addToCart({ ...product, quantity: 1 })}
-                >
-                  Add to Cart
-                </Button>
+                <div className="row justify-content-center">
+                  <Button
+                    disabled={checkStatus}
+                    onClick={() => props.addToCart({ ...product, quantity: 1 })}
+                  >
+                    Add to Cart
+                  </Button>
+                </div>
               </CardBody>
             </Card>
           </Col>

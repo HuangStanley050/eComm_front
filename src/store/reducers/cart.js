@@ -28,9 +28,18 @@ const processProduct = (type, id, products) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.ADD_TO_CART:
+      let totalPrice;
+      if (state.orderedProducts.length === 0) {
+        totalPrice = action.productInfo.quantity * action.productInfo.price;
+      } else {
+        totalPrice =
+          state.totalPrice +
+          action.productInfo.quantity * action.productInfo.price;
+      }
       return {
         ...state,
-        orderedProducts: [...state.orderedProducts, action.productInfo]
+        orderedProducts: [...state.orderedProducts, action.productInfo],
+        totalPrice: totalPrice
       };
     case actionType.INCREASE_PRODUCT:
       let id = action.productInfo._id;

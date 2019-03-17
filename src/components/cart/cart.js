@@ -38,13 +38,15 @@ const Cart = props => {
           })}
         </tbody>
       </Table>
+      <h1 style={{ textAlign: "right" }}>Total: {props.total}</h1>
     </Container>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    ordered: state.cart.orderedProducts
+    ordered: state.cart.orderedProducts,
+    total: state.cart.totalPrice
   };
 };
 
