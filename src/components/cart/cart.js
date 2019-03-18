@@ -29,7 +29,7 @@ const Cart = props => {
                   <div>
                     <div>
                       <i
-                        style={{ marginRight: "1rem" }}
+                        style={{ marginRight: "1rem", cursor: "pointer" }}
                         className="fas fa-plus-square"
                         onClick={() => props.increase(item)}
                       />
@@ -43,7 +43,7 @@ const Cart = props => {
                         value={item.quantity}
                       />
                       <i
-                        style={{ marginLeft: "1rem" }}
+                        style={{ marginLeft: "1rem", cursor: "pointer" }}
                         className="fas fa-minus-square"
                         onClick={() => props.decrease(item)}
                       />

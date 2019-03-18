@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import API from "../../config/api";
 import { connect } from "react-redux";
 import {
@@ -9,13 +9,29 @@ import {
   CardImg,
   CardSubtitle,
   CardTitle,
-  Button
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
 } from "reactstrap";
 
 const ProductList = props => {
+  const [modalStatus, toggleModal] = useState(false);
+  const [productTitle, setProductTitle] = useState("");
+  const [productDescripition, setProductDescription] = useState("");
+
+  const toggle = (event, title, description) => {
+    setProductTitle(title);
+    setProductDescription(description);
+    toggleModal(!modalStatus);
+    //event.persist();
+  };
+
   const imageStyle = {
     height: "40vh",
-    objectFit: "contain"
+    objectFit: "contain",
+    cursor: "pointer"
   };
   let checkStatus;
 
@@ -28,8 +44,15 @@ const ProductList = props => {
       {props.products.map(product => {
         return (
           <Col md="4" key={product._id}>
+            <Modal isOpen={modalStatus} toggle={toggle}>
+              <ModalHeader>{productTitle}</ModalHeader>
+              <ModalBody>{productDescripition}</ModalBody>
+            </Modal>
             <Card>
               <CardImg
+                onClick={event =>
+                  toggle(event, product.title, product.description)
+                }
                 style={imageStyle}
                 top
                 width="100%"
@@ -38,6 +61,7 @@ const ProductList = props => {
               />
               <CardBody>
                 <CardTitle style={cardTextStyle}>{product.title}</CardTitle>
+
                 <CardSubtitle style={cardTextStyle}>
                   $ {product.price}
                 </CardSubtitle>
