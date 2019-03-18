@@ -10,24 +10,20 @@ import {
 } from "../../store/actions/cartAction";
 
 const Cart = props => {
-  const [orderStatus, setOrder] = useState(false);
+  // const [orderStatus, setOrder] = useState(false);
 
-  const sendToCheckout = e => {
-    setOrder(!orderStatus);
-  };
-  let finalForm;
+  // const sendToCheckout = e => {
+  //   setOrder(!orderStatus);
+  // };
 
   let paymentForm = (
     <StripeCheckout
-      closed={sendToCheckout}
       toke="test"
       stripeKey="pk_test_rOnIUC7hbo7ElO2ZOTW2mbDZ"
       panelLabel="Make Payment"
     >
       <div style={{ textAlign: "right" }}>
-        <Button onClick={sendToCheckout} color="success">
-          Place Order
-        </Button>
+        <Button color="success">Place Order</Button>
       </div>
     </StripeCheckout>
   );
@@ -84,11 +80,7 @@ const Cart = props => {
       <h1 style={{ marginTop: "3rem", textAlign: "right" }}>
         Total: {props.total}
       </h1>
-      {/*<div style={{ textAlign: "right" }}>
-        <Button onClick={sendToCheckout} color="success">
-          Place Order
-        </Button>
-      </div>*/}
+
       {paymentForm}
     </Container>
   );
