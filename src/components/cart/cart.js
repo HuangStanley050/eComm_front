@@ -10,12 +10,6 @@ import {
 } from "../../store/actions/cartAction";
 
 const Cart = props => {
-  // const [orderStatus, setOrder] = useState(false);
-
-  // const sendToCheckout = e => {
-  //   setOrder(!orderStatus);
-  // };
-
   let paymentForm = (
     <StripeCheckout
       toke="test"
