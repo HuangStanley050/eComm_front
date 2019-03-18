@@ -20,10 +20,14 @@ const ProductList = props => {
   const [modalStatus, toggleModal] = useState(false);
   const [productTitle, setProductTitle] = useState("");
   const [productDescripition, setProductDescription] = useState("");
+  const [imageId, setImageId] = useState("");
 
-  const toggle = (event, title, description) => {
+  //https://medium.com/trabe/react-syntheticevent-reuse-889cd52981b6
+  //if I don't pass 'event' to this function, the Modal component will break
+  const toggle = (event, title, description, imageId) => {
     setProductTitle(title);
     setProductDescription(description);
+    setImageId(imageId);
     toggleModal(!modalStatus);
     //event.persist();
   };
@@ -45,13 +49,27 @@ const ProductList = props => {
         return (
           <Col md="4" key={product._id}>
             <Modal isOpen={modalStatus} toggle={toggle}>
-              <ModalHeader>{productTitle}</ModalHeader>
+              <ModalHeader toggle={toggle}>
+                <div>
+                  <img
+                    style={{ width: "3rem", border: "none" }}
+                    src={API.fetchProductImg + imageId}
+                    className="img-thumbnail"
+                  />
+                  {productTitle}
+                </div>
+              </ModalHeader>
               <ModalBody>{productDescripition}</ModalBody>
             </Modal>
             <Card>
               <CardImg
                 onClick={event =>
-                  toggle(event, product.title, product.description)
+                  toggle(
+                    event,
+                    product.title,
+                    product.description,
+                    product.imageId
+                  )
                 }
                 style={imageStyle}
                 top
