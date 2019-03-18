@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table, Container, Button } from "reactstrap";
 import { connect } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";
 import "./cart.css";
 import {
   increaseProd,
@@ -9,7 +10,29 @@ import {
 } from "../../store/actions/cartAction";
 
 const Cart = props => {
-  return (
+  const [orderStatus, setOrder] = useState(false);
+
+  const sendToCheckout = e => {
+    setOrder(!orderStatus);
+  };
+  let finalForm;
+
+  let paymentForm = (
+    <StripeCheckout
+      closed={sendToCheckout}
+      toke="test"
+      stripeKey="pk_test_rOnIUC7hbo7ElO2ZOTW2mbDZ"
+      panelLabel="Make Payment"
+    >
+      <div style={{ textAlign: "right" }}>
+        <Button onClick={sendToCheckout} color="success">
+          Place Order
+        </Button>
+      </div>
+    </StripeCheckout>
+  );
+
+  const prePayment = (
     <Container>
       <Table>
         <thead>
@@ -61,8 +84,16 @@ const Cart = props => {
       <h1 style={{ marginTop: "3rem", textAlign: "right" }}>
         Total: {props.total}
       </h1>
+      {/*<div style={{ textAlign: "right" }}>
+        <Button onClick={sendToCheckout} color="success">
+          Place Order
+        </Button>
+      </div>*/}
+      {paymentForm}
     </Container>
   );
+
+  return prePayment;
 };
 
 const mapStateToProps = state => {
