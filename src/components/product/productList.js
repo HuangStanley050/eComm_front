@@ -51,11 +51,13 @@ const ProductList = props => {
             <Modal isOpen={modalStatus} toggle={toggle}>
               <ModalHeader toggle={toggle}>
                 <div>
-                  <img
-                    style={{ width: "3rem", border: "none" }}
-                    src={API.fetchProductImg + imageId}
-                    className="img-thumbnail"
-                  />
+                  {modalStatus ? (
+                    <img
+                      style={{ width: "3rem", border: "none" }}
+                      src={API.fetchProductImg + imageId}
+                      className="img-thumbnail"
+                    />
+                  ) : null}
                   {productTitle}
                 </div>
               </ModalHeader>

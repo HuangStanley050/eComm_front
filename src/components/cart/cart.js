@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Table, Container, Button } from "reactstrap";
 import { connect } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./cart.css";
 import {
   increaseProd,
@@ -18,7 +19,7 @@ const Cart = props => {
 
   let paymentForm = (
     <StripeCheckout
-      toke="test"
+      token={() => null}
       stripeKey="pk_test_rOnIUC7hbo7ElO2ZOTW2mbDZ"
       panelLabel="Make Payment"
     >
@@ -39,42 +40,50 @@ const Cart = props => {
           </tr>
         </thead>
         <tbody>
-          {props.ordered.map(item => {
-            return (
-              <tr key={item._id}>
-                <td>{item.title}</td>
-                <td>{item.price}</td>
-                <td>
-                  <div>
-                    <div>
-                      <i
-                        style={{ marginRight: "1rem", cursor: "pointer" }}
-                        className="fas fa-plus-square"
-                        onClick={() => props.increase(item)}
-                      />
-                      <input
-                        style={{
-                          width: "2rem",
-                          height: "1rem",
-                          textAlign: "right"
-                        }}
-                        disbaled
-                        value={item.quantity}
-                      />
-                      <i
-                        style={{ marginLeft: "1rem", cursor: "pointer" }}
-                        className="fas fa-minus-square"
-                        onClick={() => props.decrease(item)}
-                      />
-                    </div>
-                    <Button onClick={() => props.remove(item)} color="danger">
-                      Remove
-                    </Button>
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
+          <TransitionGroup component={null}>
+            {props.ordered.map(item => {
+              return (
+                <CSSTransition key={item._id} timeout={300} classNames="fade">
+                  <tr>
+                    <td>{item.title}</td>
+                    <td>{item.price}</td>
+                    <td>
+                      <div>
+                        <div>
+                          <i
+                            style={{ marginRight: "1rem", cursor: "pointer" }}
+                            className="fas fa-plus-square"
+                            onClick={() => props.increase(item)}
+                          />
+                          <input
+                            style={{
+                              width: "2rem",
+                              height: "1rem",
+                              textAlign: "right"
+                            }}
+                            readOnly
+                            disbaled="true"
+                            value={item.quantity}
+                          />
+                          <i
+                            style={{ marginLeft: "1rem", cursor: "pointer" }}
+                            className="fas fa-minus-square"
+                            onClick={() => props.decrease(item)}
+                          />
+                        </div>
+                        <Button
+                          onClick={() => props.remove(item)}
+                          color="danger"
+                        >
+                          Remove
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                </CSSTransition>
+              );
+            })}
+          </TransitionGroup>
         </tbody>
       </Table>
       <h1 style={{ marginTop: "3rem", textAlign: "right" }}>
