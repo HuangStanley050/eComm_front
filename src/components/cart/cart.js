@@ -43,7 +43,7 @@ const Cart = props => {
           <TransitionGroup component={null}>
             {props.ordered.map(item => {
               return (
-                <CSSTransition key={item._id} timeout={300} classNames="fade">
+                <CSSTransition key={item._id} timeout={500} classNames="fade">
                   <tr>
                     <td>{item.title}</td>
                     <td>{item.price}</td>

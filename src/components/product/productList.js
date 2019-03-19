@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import API from "../../config/api";
 import { connect } from "react-redux";
+import { CSSTransition } from "react-transition-group";
 import {
   Row,
   Col,
@@ -12,8 +13,7 @@ import {
   Button,
   Modal,
   ModalHeader,
-  ModalBody,
-  ModalFooter
+  ModalBody
 } from "reactstrap";
 
 const ProductList = props => {
@@ -21,6 +21,7 @@ const ProductList = props => {
   const [productTitle, setProductTitle] = useState("");
   const [productDescripition, setProductDescription] = useState("");
   const [imageId, setImageId] = useState("");
+  const [hover, checkHover] = useState(false);
 
   //https://medium.com/trabe/react-syntheticevent-reuse-889cd52981b6
   //if I don't pass 'event' to this function, the Modal component will break
@@ -36,12 +37,14 @@ const ProductList = props => {
     height: "40vh",
     objectFit: "contain",
     cursor: "pointer"
+    //overflow: "hidden"
   };
   let checkStatus;
 
   const cardTextStyle = {
     textAlign: "center"
   };
+  let stats;
 
   return (
     <Row>
@@ -64,21 +67,25 @@ const ProductList = props => {
               <ModalBody>{productDescripition}</ModalBody>
             </Modal>
             <Card>
-              <CardImg
-                onClick={event =>
-                  toggle(
-                    event,
-                    product.title,
-                    product.description,
-                    product.imageId
-                  )
-                }
-                style={imageStyle}
-                top
-                width="100%"
-                src={API.fetchProductImg + product.imageId}
-                alt="Card image cap"
-              />
+              <CSSTransition in={hover} timeout={1000} classNames="productImg">
+                <CardImg
+                  onMouseOver={() => checkHover(!hover)}
+                  onMouseOut={() => checkHover(!hover)}
+                  onClick={event =>
+                    toggle(
+                      event,
+                      product.title,
+                      product.description,
+                      product.imageId
+                    )
+                  }
+                  style={imageStyle}
+                  top
+                  width="100%"
+                  src={API.fetchProductImg + product.imageId}
+                  alt="Card image cap"
+                />
+              </CSSTransition>
               <CardBody>
                 <CardTitle style={cardTextStyle}>{product.title}</CardTitle>
 
