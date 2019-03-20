@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import API from "../../config/api";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
+import "./productList.css";
 import {
   Row,
   Col,
@@ -36,8 +37,9 @@ const ProductList = props => {
   const imageStyle = {
     height: "40vh",
     objectFit: "contain",
-    cursor: "pointer"
-    //overflow: "hidden"
+    cursor: "pointer",
+
+    width: "100%"
   };
   let checkStatus;
 
@@ -66,8 +68,8 @@ const ProductList = props => {
               </ModalHeader>
               <ModalBody>{productDescripition}</ModalBody>
             </Modal>
-            <Card>
-              <CSSTransition in={hover} timeout={1000} classNames="productImg">
+            <Card style={{ overflow: "hidden" }}>
+              <CSSTransition in={hover} timeout={3000} classNames="productimg">
                 <CardImg
                   onMouseOver={() => checkHover(!hover)}
                   onMouseOut={() => checkHover(!hover)}
@@ -81,11 +83,11 @@ const ProductList = props => {
                   }
                   style={imageStyle}
                   top
-                  width="100%"
                   src={API.fetchProductImg + product.imageId}
                   alt="Card image cap"
                 />
               </CSSTransition>
+
               <CardBody>
                 <CardTitle style={cardTextStyle}>{product.title}</CardTitle>
 

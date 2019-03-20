@@ -1,18 +1,25 @@
- .productImg-enter {
-    transform: scale(1.09);
+.productimg-enter {
+  transform: scale(1.15);
+  
 }
 
-.productImg-enter-active {
-    transform: scale(1);
-    transition: transform 1000ms ease-out;
+.productimg-enter-active {
+  transform: scale(1);
+  
+  transition: all 3000ms ease-out;
 }
 
-.productImg-exit {
-    transform:scale(1);
-   
+.productimg-exit {
+    
+  transform: scale(1);
 }
 
-.productImg-exit-active {
-    transform: scale(1.09);
-    transition: transform 1000ms ease-out;
+.productimg-exit-active {
+  transform: scale(1.15);
+  
+  transition: all 3000ms ease-out;
 }
+
+
+
+
