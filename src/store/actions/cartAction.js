@@ -27,3 +27,10 @@ export const remove_from_cart = productInfo => {
     productInfo
   };
 };
+
+export const make_payment_start = paymentInfo => {
+  return {
+    type: actionType.MAKE_PAYMENT_START,
+    paymentInfo
+  };
+};

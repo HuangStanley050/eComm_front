@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import productReducer from "./store/reducers/product";
 import cartReducer from "./store/reducers/cart";
 import productSaga from "./store/sagas/productSaga";
+import cartSaga from "./store/sagas/cartSaga";
 import "./index.css";
 import App from "./App";
 
@@ -27,6 +28,7 @@ const store = createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 sagaMiddleware.run(productSaga);
+sagaMiddleware.run(cartSaga);
 
 const app = (
   <Provider store={store}>

@@ -7,13 +7,24 @@ import "./cart.css";
 import {
   increaseProd,
   decreaseProd,
-  remove_from_cart
+  remove_from_cart,
+  make_payment_start
 } from "../../store/actions/cartAction";
 
 const Cart = props => {
+  const onToken = token => {
+    const body = {
+      amount: props.total,
+      token
+    };
+    //console.log(body);
+    props.pay(body);
+  };
+
   let paymentForm = (
     <StripeCheckout
-      token={() => null}
+      token={onToken}
+      name="Framework Inc"
       stripeKey="pk_test_rOnIUC7hbo7ElO2ZOTW2mbDZ"
       panelLabel="Make Payment"
     >
@@ -104,7 +115,8 @@ const mapDispatchToProps = dispatch => {
   return {
     increase: productInfo => dispatch(increaseProd(productInfo)),
     decrease: productInfo => dispatch(decreaseProd(productInfo)),
-    remove: productInfo => dispatch(remove_from_cart(productInfo))
+    remove: productInfo => dispatch(remove_from_cart(productInfo)),
+    pay: paymentInfo => dispatch(make_payment_start(paymentInfo))
   };
 };
 
