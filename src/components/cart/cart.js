@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table, Container, Button } from "reactstrap";
 import { connect } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
@@ -11,12 +11,6 @@ import {
 } from "../../store/actions/cartAction";
 
 const Cart = props => {
-  // const [orderStatus, setOrder] = useState(false);
-
-  // const sendToCheckout = e => {
-  //   setOrder(!orderStatus);
-  // };
-
   let paymentForm = (
     <StripeCheckout
       token={() => null}
@@ -24,7 +18,9 @@ const Cart = props => {
       panelLabel="Make Payment"
     >
       <div style={{ textAlign: "right" }}>
-        <Button color="success">Place Order</Button>
+        <Button disabled={props.total > 0 ? false : true} color="success">
+          Place Order
+        </Button>
       </div>
     </StripeCheckout>
   );
