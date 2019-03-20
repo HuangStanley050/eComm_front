@@ -6,7 +6,7 @@
 .productimg-enter-active {
   transform: scale(1.23);
   
-  transition: all 2000ms ease-out;
+  transition: all 1500ms ease-out;
 }
 
 .productimg-enter-done {
@@ -21,7 +21,7 @@
 .productimg-exit-active {
   transform: scale(1);
   
-  transition: all 2000ms ease-out;
+  transition: all 1500ms ease-out;
 }
 
 

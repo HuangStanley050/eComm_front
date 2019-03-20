@@ -23,6 +23,7 @@ const ProductList = props => {
   const [productDescripition, setProductDescription] = useState("");
   const [imageId, setImageId] = useState("");
   const [hover, checkHover] = useState(false);
+  const [hover_id, changeHoverID] = useState("");
 
   //https://medium.com/trabe/react-syntheticevent-reuse-889cd52981b6
   //if I don't pass 'event' to this function, the Modal component will break
@@ -31,14 +32,12 @@ const ProductList = props => {
     setProductDescription(description);
     setImageId(imageId);
     toggleModal(!modalStatus);
-    //event.persist();
   };
 
   const imageStyle = {
     height: "40vh",
     objectFit: "contain",
     cursor: "pointer",
-
     width: "100%"
   };
   let checkStatus;
@@ -46,7 +45,6 @@ const ProductList = props => {
   const cardTextStyle = {
     textAlign: "center"
   };
-  let stats;
 
   return (
     <Row>
@@ -71,13 +69,20 @@ const ProductList = props => {
               </Modal>
               <Card style={{ overflow: "hidden" }}>
                 <CSSTransition
-                  in={hover}
-                  timeout={2000}
+                  in={product._id === hover_id ? true : false}
+                  timeout={1500}
                   classNames="productimg"
                 >
                   <CardImg
-                    onMouseOver={() => checkHover(!hover)}
-                    onMouseOut={() => checkHover(!hover)}
+                    hover_id={hover_id}
+                    onMouseOver={() => {
+                      checkHover(!hover);
+                      changeHoverID(product._id);
+                    }}
+                    onMouseOut={() => {
+                      checkHover(!hover);
+                      changeHoverID("");
+                    }}
                     onClick={event =>
                       toggle(
                         event,
