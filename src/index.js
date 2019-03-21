@@ -9,6 +9,7 @@ import productReducer from "./store/reducers/product";
 import cartReducer from "./store/reducers/cart";
 import authReducer from "./store/reducers/auth";
 import productSaga from "./store/sagas/productSaga";
+import authSaga from "./store/sagas/authSaga";
 import cartSaga from "./store/sagas/cartSaga";
 import "./index.css";
 import App from "./App";
@@ -29,8 +30,10 @@ const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
+
 sagaMiddleware.run(productSaga);
 sagaMiddleware.run(cartSaga);
+sagaMiddleware.run(authSaga);
 
 const app = (
   <Provider store={store}>

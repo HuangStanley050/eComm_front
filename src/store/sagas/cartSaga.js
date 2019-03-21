@@ -9,7 +9,7 @@ function* cartSagaPaymentWorker(action) {
   //yield console.log(action.paymentInfo);
   try {
     const result = yield axios.post(API.pay, action.paymentInfo);
-    console.log(result);
+    //console.log(result);
     yield put(make_payment_success());
   } catch (e) {
     console.log(e);

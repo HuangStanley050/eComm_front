@@ -10,6 +10,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import { register_user_start } from "../../store/actions/authAction";
 import { connect } from "react-redux";
 
 class Register extends React.Component {
@@ -25,12 +26,22 @@ class Register extends React.Component {
     });
   };
 
+  submitHandler = e => {
+    e.preventDefault();
+    this.props.register(this.state);
+    this.setState({
+      name: "",
+      email: "",
+      password: ""
+    });
+  };
+
   render() {
     return (
       <Container style={{ marginTop: "2rem" }}>
         <Row>
           <Col md={{ size: 6, offset: 3 }}>
-            <Form>
+            <Form onSubmit={this.submitHandler}>
               <FormGroup>
                 <Label for="exampleEmail">Name</Label>
                 <Input
@@ -65,7 +76,7 @@ class Register extends React.Component {
                 />
               </FormGroup>
               <div className="row justify-content-center">
-                <Button color="primary" type="submit">
+                <Button type="submit" color="primary" type="submit">
                   Submit
                 </Button>
               </div>
@@ -77,4 +88,13 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+const mapDispatchToProps = dispatch => {
+  return {
+    register: userInfo => dispatch(register_user_start(userInfo))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Register);
