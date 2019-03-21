@@ -4,5 +4,6 @@ export default {
   fetchProducts:
     "https://webdevpractice-infamousgodhand.c9users.io:8081/api/file/fetchProducts?page=",
   fetchProductImg:
-    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/file/image/"
+    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/file/image/",
+  pay: "https://webdevpractice-infamousgodhand.c9users.io:8081/api/payment"
 };

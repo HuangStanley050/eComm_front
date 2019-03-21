@@ -17,7 +17,7 @@ const Cart = props => {
       amount: props.total,
       token
     };
-    //console.log(body);
+
     props.pay(body);
   };
 
@@ -27,6 +27,8 @@ const Cart = props => {
       name="Framework Inc"
       stripeKey="pk_test_rOnIUC7hbo7ElO2ZOTW2mbDZ"
       panelLabel="Make Payment"
+      currency="USD"
+      amount={props.total * 100}
     >
       <div style={{ textAlign: "right" }}>
         <Button disabled={props.total > 0 ? false : true} color="success">
