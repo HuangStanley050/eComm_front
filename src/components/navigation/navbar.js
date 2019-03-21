@@ -39,6 +39,16 @@ const NavBar = () => {
                 Admin
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to="/login">
+                Login
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to="/signup">
+                Register
+              </NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>

@@ -7,6 +7,7 @@ import createSagaMiddleware from "redux-saga";
 import { Provider } from "react-redux";
 import productReducer from "./store/reducers/product";
 import cartReducer from "./store/reducers/cart";
+import authReducer from "./store/reducers/auth";
 import productSaga from "./store/sagas/productSaga";
 import cartSaga from "./store/sagas/cartSaga";
 import "./index.css";
@@ -20,7 +21,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   product: productReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  auth: authReducer
 });
 
 const store = createStore(
