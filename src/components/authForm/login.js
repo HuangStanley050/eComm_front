@@ -11,15 +11,26 @@ import {
   Col
 } from "reactstrap";
 import { connect } from "react-redux";
+import { login_start } from "../../store/actions/authAction";
 
 class Login extends Component {
   state = {
     email: "",
     password: ""
   };
+
   handleInput = e => {
     this.setState({
       [e.target.id]: e.target.value
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.login(this.state);
+    this.setState({
+      email: "",
+      password: ""
     });
   };
   render() {
@@ -27,7 +38,7 @@ class Login extends Component {
       <Container style={{ marginTop: "2rem" }}>
         <Row>
           <Col md={{ size: 6, offset: 3 }}>
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
               <FormGroup>
                 <Label for="exampleEmail">Email</Label>
                 <Input
@@ -51,7 +62,7 @@ class Login extends Component {
                 />
               </FormGroup>
               <div className="row justify-content-center">
-                <Button color="primary" type="submit">
+                <Button type="submit" color="primary" type="submit">
                   Submit
                 </Button>
               </div>
@@ -63,4 +74,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => {
+  return {
+    login: userInfo => dispatch(login_start(userInfo))
+  };
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);

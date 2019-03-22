@@ -7,5 +7,6 @@ export default {
     "https://webdevpractice-infamousgodhand.c9users.io:8081/api/file/image/",
   pay: "https://webdevpractice-infamousgodhand.c9users.io:8081/api/payment",
   register:
-    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/auth/register"
+    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/auth/register",
+  login: "https://webdevpractice-infamousgodhand.c9users.io:8081/api/auth/login"
 };
