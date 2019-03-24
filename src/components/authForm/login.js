@@ -5,7 +5,6 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
   Container,
   Row,
   Col
@@ -62,7 +61,7 @@ class Login extends Component {
                 />
               </FormGroup>
               <div className="row justify-content-center">
-                <Button type="submit" color="primary" type="submit">
+                <Button color="primary" type="submit">
                   Submit
                 </Button>
               </div>

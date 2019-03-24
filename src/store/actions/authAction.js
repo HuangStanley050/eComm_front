@@ -19,7 +19,7 @@ export const login_start = userInfo => {
   };
 };
 
-export const login_success = token => ({
+export const login_success = userInfo => ({
   type: actionType.LOGIN_SUCCESS,
-  token
+  userInfo
 });

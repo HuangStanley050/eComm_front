@@ -1,8 +1,10 @@
 import { takeEvery, put } from "redux-saga/effects";
 import * as actionType from "../actions/actionTypes";
+/*global localStorage */
 import {
   register_user_start,
-  register_user_success
+  register_user_success,
+  login_success
 } from "../actions/authAction";
 import axios from "axios";
 import API from "../../config/api";
@@ -19,10 +21,12 @@ function* authRegisterSagaWorker(action) {
 }
 
 function* authLoginSagaWorker(action) {
-  yield console.log("this is login saga");
+  //yield console.log("this is login saga");
   try {
     let result = yield axios.post(API.login, action.userInfo);
-    console.log(result);
+    yield localStorage.setItem("token", result.data.token);
+    //console.log(result);
+    yield put(login_success(result.data.userInfo));
   } catch (e) {
     console.log(e.response.data.error);
   }
