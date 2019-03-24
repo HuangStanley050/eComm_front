@@ -1,5 +1,6 @@
 import { takeEvery, put } from "redux-saga/effects";
 import * as actionType from "../actions/actionTypes";
+/*global localStorage*/
 import {
   add_product_success,
   fetchProductsPage_success
@@ -15,7 +16,8 @@ function* productSagaWorker(action) {
       url: API.addProduct,
       data: action.productData,
       headers: {
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + localStorage.token
       }
     });
     yield put(add_product_success());
