@@ -8,6 +8,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.LOGIN_START:
+    case actionType.REGISTER_USER_START:
       return {
         ...state,
         loading: true
@@ -18,6 +19,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         isAuth: true,
         userInfo: { ...action.userInfo },
+        loading: false
+      };
+    case actionType.REGISTER_USER_SUCCESS:
+      return {
+        ...state,
         loading: false
       };
     default:
