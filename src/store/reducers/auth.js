@@ -2,7 +2,8 @@ import * as actionType from "../actions/actionTypes";
 const initialState = {
   isAuth: false,
   userInfo: {},
-  loading: false
+  loading: false,
+  error: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +26,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false
+      };
+    case actionType.LOGIN_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.message
+      };
+    case actionType.CLEAR_ERROR:
+      return {
+        ...state,
+        error: ""
       };
     default:
       return state;

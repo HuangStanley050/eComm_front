@@ -25,3 +25,5 @@ export const REGISTER_USER_FAIL = "REGISTER_USER_FAIL";
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
+
+export const CLEAR_ERROR = "CLEAR_ERROR";

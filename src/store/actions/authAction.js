@@ -23,3 +23,10 @@ export const login_success = userInfo => ({
   type: actionType.LOGIN_SUCCESS,
   userInfo
 });
+
+export const login_fail = message => ({
+  type: actionType.LOGIN_FAIL,
+  message
+});
+
+export const clear_error = () => ({ type: actionType.CLEAR_ERROR });

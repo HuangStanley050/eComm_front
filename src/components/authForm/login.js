@@ -12,6 +12,7 @@ import {
 import { connect } from "react-redux";
 import { login_start } from "../../store/actions/authAction";
 import Loader from "../loading/spinner";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
   state = {
@@ -34,9 +35,24 @@ class Login extends Component {
     });
   };
   render() {
+    let redirect = null;
+
+    if (this.props.auth.hasOwnProperty("admin")) {
+      redirect = <Redirect to="/admin" />;
+    }
+    if (
+      Object.keys(this.props.auth).length !== 0 &&
+      !this.props.auth.hasOwnProperty("admin")
+    ) {
+      redirect = <Redirect to="/products" />;
+    }
+
     return (
       <Container style={{ marginTop: "2rem" }}>
-        {!this.props.isloading ? (
+        {redirect}
+        {this.props.loading ? (
+          <Loader />
+        ) : (
           <Row>
             <Col md={{ size: 6, offset: 3 }}>
               <Form onSubmit={this.handleSubmit}>
@@ -68,10 +84,19 @@ class Login extends Component {
                   </Button>
                 </div>
               </Form>
+              {this.props.error ? (
+                <h2
+                  style={{
+                    color: "red",
+                    textAlign: "center",
+                    marginTop: "2rem"
+                  }}
+                >
+                  {this.props.error}
+                </h2>
+              ) : null}
             </Col>
           </Row>
-        ) : (
-          <Loader />
         )}
       </Container>
     );
@@ -85,7 +110,9 @@ const mapDispatchToProps = dispatch => {
 };
 const mapStateToProps = state => {
   return {
-    loading: state.auth.isloading
+    loading: state.auth.isloading,
+    error: state.auth.error,
+    auth: state.auth.userInfo
   };
 };
 export default connect(
