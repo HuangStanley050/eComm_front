@@ -1,6 +1,7 @@
 import * as actionType from "../actions/actionTypes";
 const initialState = {
   isAuth: false,
+  isRegistered: false,
   userInfo: {},
   loading: false,
   error: ""
@@ -25,7 +26,8 @@ const reducer = (state = initialState, action) => {
     case actionType.REGISTER_USER_SUCCESS:
       return {
         ...state,
-        loading: false
+        loading: false,
+        isRegistered: true
       };
     case actionType.LOGIN_FAIL:
       return {

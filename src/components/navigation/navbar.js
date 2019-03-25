@@ -46,11 +46,19 @@ const NavBar = props => {
               <React.Fragment>
                 <NavItem>
                   <NavLink tag={Link} to="/login">
+                    <i
+                      style={{ marginRight: "10px" }}
+                      className="fas fa-sign-in-alt"
+                    />
                     Login
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={Link} to="/signup">
+                    <i
+                      style={{ marginRight: "10px" }}
+                      className="fas fa-user-plus"
+                    />
                     Register
                   </NavLink>
                 </NavItem>
