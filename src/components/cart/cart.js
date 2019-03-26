@@ -1,6 +1,14 @@
-import React from "react";
-import { Table, Container, Button } from "reactstrap";
+import React, { useState } from "react";
+import {
+  Table,
+  Container,
+  Button,
+  ModalHeader,
+  ModalBody,
+  Modal
+} from "reactstrap";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./cart.css";
@@ -12,6 +20,8 @@ import {
 } from "../../store/actions/cartAction";
 
 const Cart = props => {
+  const [modalStatus, toggleModal] = useState(false);
+
   const onToken = token => {
     const body = {
       amount: props.total,
@@ -19,6 +29,19 @@ const Cart = props => {
     };
 
     props.pay(body);
+  };
+
+  const toggle = event => {
+    //console.log("toggle");
+    toggleModal(!modalStatus);
+  };
+
+  const checkAuth = event => {
+    if (!props.auth) {
+      event.stopPropagation();
+      toggle(event);
+    }
+    //return props.history.push("/login");
   };
 
   let paymentForm = (
@@ -31,7 +54,11 @@ const Cart = props => {
       amount={props.total * 100}
     >
       <div style={{ textAlign: "right" }}>
-        <Button disabled={props.total > 0 ? false : true} color="success">
+        <Button
+          onClick={checkAuth}
+          disabled={props.total > 0 ? false : true}
+          color="success"
+        >
           Place Order
         </Button>
       </div>
@@ -40,6 +67,13 @@ const Cart = props => {
 
   const prePayment = (
     <Container>
+      <Modal isOpen={modalStatus} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Please Login before purchase</ModalHeader>
+        <ModalBody>
+          <Link to="/login">Go Back to Login</Link>
+        </ModalBody>
+      </Modal>
+
       <Table>
         <thead>
           <tr>
@@ -109,7 +143,8 @@ const Cart = props => {
 const mapStateToProps = state => {
   return {
     ordered: state.cart.orderedProducts,
-    total: state.cart.totalPrice
+    total: state.cart.totalPrice,
+    auth: state.auth.isAuth
   };
 };
 
