@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import API from "../../config/api";
 import { connect } from "react-redux";
+import { CSSTransition } from "react-transition-group";
+import "./productList.css";
 import {
   Row,
   Col,
@@ -12,8 +14,7 @@ import {
   Button,
   Modal,
   ModalHeader,
-  ModalBody,
-  ModalFooter
+  ModalBody
 } from "reactstrap";
 
 const ProductList = props => {
@@ -22,6 +23,8 @@ const ProductList = props => {
   const [productDescripition, setProductDescription] = useState("");
   const [imageId, setImageId] = useState("");
 
+  const [hover_id, changeHoverID] = useState("");
+
   //https://medium.com/trabe/react-syntheticevent-reuse-889cd52981b6
   //if I don't pass 'event' to this function, the Modal component will break
   const toggle = (event, title, description, imageId) => {
@@ -29,13 +32,13 @@ const ProductList = props => {
     setProductDescription(description);
     setImageId(imageId);
     toggleModal(!modalStatus);
-    //event.persist();
   };
 
   const imageStyle = {
     height: "40vh",
     objectFit: "contain",
-    cursor: "pointer"
+    cursor: "pointer",
+    width: "100%"
   };
   let checkStatus;
 
@@ -51,37 +54,53 @@ const ProductList = props => {
             <Modal isOpen={modalStatus} toggle={toggle}>
               <ModalHeader toggle={toggle}>
                 <div>
-                  <img
-                    style={{ width: "3rem", border: "none" }}
-                    src={API.fetchProductImg + imageId}
-                    className="img-thumbnail"
-                  />
+                  {modalStatus ? (
+                    <img
+                      alt=""
+                      style={{ width: "3rem", border: "none" }}
+                      src={API.fetchProductImg + imageId}
+                      className="img-thumbnail"
+                    />
+                  ) : null}
                   {productTitle}
                 </div>
               </ModalHeader>
               <ModalBody>{productDescripition}</ModalBody>
             </Modal>
-            <Card>
-              <CardImg
-                onClick={event =>
-                  toggle(
-                    event,
-                    product.title,
-                    product.description,
-                    product.imageId
-                  )
-                }
-                style={imageStyle}
-                top
-                width="100%"
-                src={API.fetchProductImg + product.imageId}
-                alt="Card image cap"
-              />
+            <Card style={{ overflow: "hidden" }}>
+              <CSSTransition
+                in={product._id === hover_id ? true : false}
+                timeout={1500}
+                classNames="productimg"
+              >
+                <CardImg
+                  hover_id={hover_id}
+                  onMouseOver={() => {
+                    changeHoverID(product._id);
+                  }}
+                  onMouseOut={() => {
+                    changeHoverID("");
+                  }}
+                  onClick={event =>
+                    toggle(
+                      event,
+                      product.title,
+                      product.description,
+                      product.imageId
+                    )
+                  }
+                  style={imageStyle}
+                  top
+                  src={API.fetchProductImg + product.imageId}
+                  alt="Card image cap"
+                />
+              </CSSTransition>
+
               <CardBody>
                 <CardTitle style={cardTextStyle}>{product.title}</CardTitle>
 
                 <CardSubtitle style={cardTextStyle}>
-                  $ {product.price}
+                  <span style={{ color: "red" }}>${product.price}</span>
                 </CardSubtitle>
 
                 {props.ordered.find(item => item._id === product._id)

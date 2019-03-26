@@ -1,0 +1,29 @@
+.productimg-enter {
+  transform: scale(1);
+  
+}
+
+.productimg-enter-active {
+  transform: scale(1.23);
+  
+  transition: all 1500ms ease-out;
+}
+
+.productimg-enter-done {
+  transform: scale(1.23);
+}
+
+.productimg-exit {
+    
+  transform: scale(1.23);
+}
+
+.productimg-exit-active {
+  transform: scale(1);
+  
+  transition: all 1500ms ease-out;
+}
+
+
+
+
