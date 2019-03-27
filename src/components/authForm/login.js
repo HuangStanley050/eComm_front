@@ -44,7 +44,7 @@ class Login extends Component {
       Object.keys(this.props.auth).length !== 0 &&
       !this.props.auth.hasOwnProperty("admin")
     ) {
-      redirect = <Redirect to="/products" />;
+      redirect = <Redirect to="/dashboard" />;
     }
 
     return (

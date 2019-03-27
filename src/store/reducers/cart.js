@@ -2,6 +2,7 @@ import * as actionType from "../actions/actionTypes";
 
 const initialState = {
   orderedProducts: [],
+  orderHistory: [],
   totalPrice: null
 };
 
@@ -85,6 +86,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         orderedProducts: [...final],
         totalPrice: price
+      };
+    case actionType.MAKE_PAYMENT_SUCCESS:
+      return {
+        ...state,
+        orderedProducts: [],
+        totalPrice: null
       };
     default:
       return state;

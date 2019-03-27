@@ -4,6 +4,7 @@ const initialState = {
   isRegistered: false,
   userInfo: {},
   loading: false,
+  orderHistory: [],
   error: ""
 };
 

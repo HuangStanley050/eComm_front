@@ -42,6 +42,13 @@ const NavBar = props => {
             </NavItem>
             {props.authStatus.isAuth ? (
               <NavItem>
+                <NavLink tag={Link} to="/dashboard">
+                  Dashboard
+                </NavLink>
+              </NavItem>
+            ) : null}
+            {props.authStatus.isAuth ? (
+              <NavItem>
                 <NavLink onClick={logoutHander} style={{ cursor: "pointer" }}>
                   Logout
                 </NavLink>
