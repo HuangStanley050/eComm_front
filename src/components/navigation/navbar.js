@@ -9,10 +9,16 @@ import {
   NavLink
 } from "reactstrap";
 import { connect } from "react-redux";
+import { logout } from "../../store/actions/authAction";
 
 import { Link } from "react-router-dom";
 
 const NavBar = props => {
+  const logoutHander = () => {
+    if (window.confirm("Are you logging out?")) {
+      props.logout();
+    }
+  };
   return (
     <div>
       <Navbar color="dark" light expand="md">
@@ -34,6 +40,13 @@ const NavBar = props => {
                 Shopping Cart
               </NavLink>
             </NavItem>
+            {props.authStatus.isAuth ? (
+              <NavItem>
+                <NavLink onClick={logoutHander} style={{ cursor: "pointer" }}>
+                  Logout
+                </NavLink>
+              </NavItem>
+            ) : null}
             {props.authStatus.userInfo.hasOwnProperty("admin") ? (
               <NavItem>
                 <NavLink tag={Link} to="/admin">
@@ -77,4 +90,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(NavBar);
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(logout())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavBar);

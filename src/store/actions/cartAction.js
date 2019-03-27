@@ -35,8 +35,9 @@ export const make_payment_start = paymentInfo => {
   };
 };
 
-export const make_payment_success = () => {
+export const make_payment_success = result => {
   return {
-    type: actionType.MAKE_PAYMENT_SUCCESS
+    type: actionType.MAKE_PAYMENT_SUCCESS,
+    result
   };
 };

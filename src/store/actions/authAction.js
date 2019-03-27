@@ -30,3 +30,5 @@ export const login_fail = message => ({
 });
 
 export const clear_error = () => ({ type: actionType.CLEAR_ERROR });
+
+export const logout = () => ({ type: actionType.LOGOUT });

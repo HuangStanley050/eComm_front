@@ -25,6 +25,7 @@ const Cart = props => {
   const onToken = token => {
     const body = {
       amount: props.total,
+      products: props.ordered,
       token
     };
 

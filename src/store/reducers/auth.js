@@ -40,6 +40,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: ""
       };
+    case actionType.LOGOUT:
+      return {
+        ...state,
+        isAuth: false,
+        userInfo: {}
+      };
     default:
       return state;
   }

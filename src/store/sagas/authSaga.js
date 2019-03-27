@@ -1,4 +1,4 @@
-import { takeEvery, put } from "redux-saga/effects";
+import { takeEvery, put, call } from "redux-saga/effects";
 import * as actionType from "../actions/actionTypes";
 /*global localStorage */
 import {
@@ -35,9 +35,14 @@ function* authLoginSagaWorker(action) {
   }
 }
 
+function* authLogoutSagaWorker(action) {
+  yield call([localStorage, "removeItem"], "token");
+}
+
 function* authSagaWatcher() {
   yield takeEvery(actionType.REGISTER_USER_START, authRegisterSagaWorker);
   yield takeEvery(actionType.LOGIN_START, authLoginSagaWorker);
+  yield takeEvery(actionType.LOGOUT, authLogoutSagaWorker);
 }
 
 export default authSagaWatcher;

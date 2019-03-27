@@ -16,8 +16,8 @@ function* cartSagaPaymentWorker(action) {
         Authorization: "Bearer " + localStorage.token
       }
     });
-    //console.log(result);
-    yield put(make_payment_success());
+    console.log(result);
+    yield put(make_payment_success(result));
   } catch (e) {
     console.log(e);
   }
