@@ -8,5 +8,7 @@ export default {
   pay: "https://webdevpractice-infamousgodhand.c9users.io:8081/api/payment",
   register:
     "https://webdevpractice-infamousgodhand.c9users.io:8081/api/auth/register",
-  login: "https://webdevpractice-infamousgodhand.c9users.io:8081/api/auth/login"
+  login:
+    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/auth/login",
+  history: "https://webdevpractice-infamousgodhand.c9users.io:8081/api/history"
 };

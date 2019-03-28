@@ -41,3 +41,13 @@ export const make_payment_success = result => {
     result
   };
 };
+
+export const fetch_history = token => ({
+  type: actionType.FETCH_ORDER_HISTORY_START,
+  token
+});
+
+export const fetch_success = products => ({
+  type: actionType.FETCH_ORDER_HISTORY_SUCCESS,
+  products
+});

@@ -39,7 +39,7 @@ const Cart = props => {
 
   const checkAuth = event => {
     if (!props.auth) {
-      event.stopPropagation();
+      event.stopPropagation(); //this is to stop the event bubble up to the parent StripeCheckout component
       toggle(event);
     }
     //return props.history.push("/login");

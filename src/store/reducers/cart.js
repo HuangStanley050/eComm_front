@@ -3,7 +3,8 @@ import * as actionType from "../actions/actionTypes";
 const initialState = {
   orderedProducts: [],
   orderHistory: [],
-  totalPrice: null
+  totalPrice: null,
+  loading: false
 };
 
 const processProduct = (type, id, products) => {
@@ -92,6 +93,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         orderedProducts: [],
         totalPrice: null
+      };
+    case actionType.FETCH_ORDER_HISTORY_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case actionType.FETCH_ORDER_HISTORY_SUCCESS:
+      //console.log(action.products);
+      return {
+        ...state,
+        loading: false,
+        orderHistory: [...action.products]
       };
     default:
       return state;
