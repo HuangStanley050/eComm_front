@@ -28,6 +28,7 @@ const NavBar = props => {
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink tag={Link} to="/products">
+                <i style={{ marginRight: "10px" }} className="fas fa-box" />
                 Products
               </NavLink>
             </NavItem>
