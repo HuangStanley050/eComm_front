@@ -5,7 +5,8 @@ import {
   register_user_success,
   login_success,
   login_fail,
-  clear_error
+  clear_error,
+  logout_clear
 } from "../actions/authAction";
 import axios from "axios";
 import API from "../../config/api";
@@ -37,6 +38,7 @@ function* authLoginSagaWorker(action) {
 
 function* authLogoutSagaWorker(action) {
   yield call([localStorage, "removeItem"], "token");
+  yield put(logout_clear());
 }
 
 function* authSagaWatcher() {

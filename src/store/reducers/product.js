@@ -31,6 +31,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentPage: action.pageNo
       };
+    case actionType.LOGOUT_CLEAR:
+      return {
+        ...state,
+        products: []
+      };
     default:
       return state;
   }

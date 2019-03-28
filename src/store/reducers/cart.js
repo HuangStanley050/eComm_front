@@ -106,6 +106,11 @@ const reducer = (state = initialState, action) => {
         loading: false,
         orderHistory: [...action.products]
       };
+    case actionType.LOGOUT_CLEAR:
+      return {
+        ...state,
+        orderHistory: []
+      };
     default:
       return state;
   }
