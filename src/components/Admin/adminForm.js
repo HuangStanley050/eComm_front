@@ -26,21 +26,26 @@ class AdminForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("title", this.state.title);
-    formData.append("description", this.state.description);
-    formData.append("price", this.state.price);
-    formData.append("file", this.state.picture);
-    this.setState({
-      title: "",
-      description: "",
-      price: 0,
-      picture: null
-    });
-    //console.log(formData);
-    document.getElementById("File").value = "";
+    if (this.state.picture === null) {
+      alert("You have not selected a framework picture");
+      return;
+    } else {
+      const formData = new FormData();
+      formData.append("title", this.state.title);
+      formData.append("description", this.state.description);
+      formData.append("price", this.state.price);
+      formData.append("file", this.state.picture);
+      this.setState({
+        title: "",
+        description: "",
+        price: 0,
+        picture: null
+      });
+      //console.log(formData);
+      document.getElementById("File").value = "";
 
-    this.props.addProduct(formData);
+      this.props.addProduct(formData);
+    }
   };
 
   handleInput = e => {
