@@ -8,6 +8,7 @@ import Register from "./components/authForm/register";
 import Login from "./components/authForm/login";
 import Issue from "./components/error/error";
 import DashBoard from "./components/dashboard/dashboard";
+import Landing from "./components/landing/landing";
 
 import Cart from "./components/cart/cart";
 import "./App.css";
@@ -18,6 +19,7 @@ class App extends Component {
       <div>
         <NavBar />
         <Switch>
+          <Route exact path="/" component={Landing} />
           <Route path="/admin" component={AdminForm} />
           <Route path="/products" component={Products} />
           <Route path="/cart" component={Cart} />

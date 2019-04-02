@@ -3,7 +3,11 @@ const initialState = {
   loading: false,
   products: [],
   totalPages: 0,
-  currentPage: 1
+  currentPage: 1,
+  error: {
+    code: "",
+    msg: ""
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +29,16 @@ const reducer = (state = initialState, action) => {
         loading: false,
         totalPages: action.documents.totalPages,
         products: [...action.documents.docs]
+      };
+    case actionType.FETCH_PRODUCTSPAGE_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: {
+          ...state.error,
+          code: action.error.status,
+          msg: action.error.data.error
+        }
       };
     case actionType.CHANGE_PAGE_NO:
       return {

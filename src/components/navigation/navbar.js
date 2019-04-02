@@ -22,7 +22,11 @@ const NavBar = props => {
   return (
     <div>
       <Navbar color="dark" light expand="md">
-        <NavbarBrand href="/">Framework Shop App</NavbarBrand>
+        <NavbarBrand>
+          <Link style={{ color: "black", textDecoration: "none" }} to="/">
+            Framework Shop App
+          </Link>
+        </NavbarBrand>
         <NavbarToggler />
         <Collapse navbar>
           <Nav className="ml-auto" navbar>

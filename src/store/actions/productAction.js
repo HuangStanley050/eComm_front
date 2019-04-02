@@ -27,6 +27,13 @@ export const fetchProductsPage_success = documents => {
   };
 };
 
+export const fetchProductPage_fail = error => {
+  return {
+    type: actionType.FETCH_PRODUCTSPAGE_FAIL,
+    error
+  };
+};
+
 export const changePage = pageNo => {
   return {
     type: actionType.CHANGE_PAGE_NO,

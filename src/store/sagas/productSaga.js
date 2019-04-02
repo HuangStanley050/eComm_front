@@ -3,7 +3,8 @@ import * as actionType from "../actions/actionTypes";
 /*global localStorage*/
 import {
   add_product_success,
-  fetchProductsPage_success
+  fetchProductsPage_success,
+  fetchProductPage_fail
 } from "../actions/productAction";
 import API from "../../config/api";
 import axios from "axios";
@@ -29,10 +30,12 @@ function* productSagaWorker(action) {
 function* fetchSagaWorker(action) {
   try {
     const result = yield axios.get(API.fetchProducts + action.currentPage);
-    console.log(result);
+    //console.log(result);
     yield put(fetchProductsPage_success(result.data));
   } catch (err) {
-    console.log(err);
+    // console.log(err.response.data.error);
+    // console.log(err.response.status);
+    yield put(fetchProductPage_fail(err.response));
   }
 }
 
