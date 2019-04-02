@@ -6,6 +6,7 @@ import AdminForm from "./components/Admin/adminForm";
 import Products from "./components/product/productMain";
 import Register from "./components/authForm/register";
 import Login from "./components/authForm/login";
+import Issue from "./components/error/error";
 import DashBoard from "./components/dashboard/dashboard";
 
 import Cart from "./components/cart/cart";
@@ -23,6 +24,7 @@ class App extends Component {
           <Route path="/signup" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/dashboard" component={DashBoard} />
+          <Route component={Issue} />
         </Switch>
       </div>
     );
