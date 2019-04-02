@@ -27,6 +27,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 
 export const CLEAR_ERROR = "CLEAR_ERROR";
+export const CLEAR_FETCH_PRODUCTS_ERROR = "CLEAR_FETCH_PRODUCTS_ERROR";
 
 export const LOGOUT = "LOGOUT";
 export const LOGOUT_CLEAR = "LOGOUT_CLEAR";

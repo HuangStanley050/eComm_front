@@ -40,3 +40,7 @@ export const changePage = pageNo => {
     pageNo
   };
 };
+
+export const clear_product_fetch_error = () => ({
+  type: actionType.CLEAR_FETCH_PRODUCTS_ERROR
+});

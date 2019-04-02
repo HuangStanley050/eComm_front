@@ -4,10 +4,7 @@ const initialState = {
   products: [],
   totalPages: 0,
   currentPage: 1,
-  error: {
-    code: "",
-    msg: ""
-  }
+  error: {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -39,6 +36,11 @@ const reducer = (state = initialState, action) => {
           code: action.error.status,
           msg: action.error.data.error
         }
+      };
+    case actionType.CLEAR_FETCH_PRODUCTS_ERROR:
+      return {
+        ...state,
+        error: {}
       };
     case actionType.CHANGE_PAGE_NO:
       return {
