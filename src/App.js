@@ -20,12 +20,12 @@ class App extends Component {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route path="/admin" component={AdminForm} />
-          <Route path="/products" component={Products} />
+          {/*<Route path="/admin" component={AdminForm} />*/}
+          {/*<Route path="/products" component={Products} />*/}
           <Route path="/cart" component={Cart} />
           <Route path="/signup" component={Register} />
           <Route path="/login" component={Login} />
-          <Route path="/dashboard" component={DashBoard} />
+          {/*<Route path="/dashboard" component={DashBoard} />*/}
           <Route component={Issue} />
         </Switch>
       </div>
