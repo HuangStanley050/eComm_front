@@ -48,7 +48,7 @@ class Login extends Component {
     }
 
     return (
-      <Container style={{ marginTop: "2rem" }}>
+      <Container className="page" style={{ marginTop: "2rem" }}>
         {redirect}
 
         <Row>

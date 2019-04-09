@@ -11,7 +11,7 @@ const Landing = () => {
     backgroundColor: "#7191c4"
   };
   return (
-    <div style={container}>
+    <div style={container} className="page">
       <h1>Landing page</h1>
     </div>
   );

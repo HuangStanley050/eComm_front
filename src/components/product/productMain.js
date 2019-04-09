@@ -46,16 +46,11 @@ class Products extends Component {
       content = <Loader />;
     } else {
       content = (
-        <React.Fragment>
-          <Container style={{ marginTop: "5rem" }}>
-            {redirect}
-            <ProductList
-              products={products}
-              addToCart={this.addProductToCart}
-            />
-          </Container>
+        <Container className="page" style={{ marginTop: "5rem" }}>
+          {redirect}
+          <ProductList products={products} addToCart={this.addProductToCart} />
           <PaginationMain totalPages={pages} getPage={this.changeCurrentPage} />
-        </React.Fragment>
+        </Container>
       );
     }
     return content;

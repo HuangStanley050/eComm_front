@@ -44,7 +44,7 @@ class Register extends React.Component {
     }
 
     return (
-      <Container style={{ marginTop: "2rem" }}>
+      <Container className="page" style={{ marginTop: "2rem" }}>
         {redirect}
         <Row>
           <Col md={{ size: 6, offset: 3 }}>

@@ -27,7 +27,7 @@ const DashBoard = props => {
     content = <Redirect to="/login" />;
   } else {
     content = (
-      <Container style={{ marginTop: "2rem" }}>
+      <Container className="page" style={{ marginTop: "2rem" }}>
         {props.loadingStatus ? (
           <Loader />
         ) : (

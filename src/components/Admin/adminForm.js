@@ -64,7 +64,7 @@ class AdminForm extends Component {
 
     if (this.props.authAdmin.userInfo.hasOwnProperty("admin")) {
       content = (
-        <Container style={{ marginTop: "30px" }}>
+        <Container className="page" style={{ marginTop: "30px" }}>
           <Form onSubmit={this.handleSubmit} style={{ margin: "0 auto" }}>
             <FormGroup>
               <Label
