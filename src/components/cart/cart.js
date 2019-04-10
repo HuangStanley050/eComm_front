@@ -67,7 +67,7 @@ const Cart = props => {
   );
 
   const prePayment = (
-    <Container>
+    <Container className="page">
       <Modal isOpen={modalStatus} toggle={toggle}>
         <ModalHeader toggle={toggle}>Please Login before purchase</ModalHeader>
         <ModalBody>
