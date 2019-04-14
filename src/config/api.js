@@ -1,14 +1,11 @@
 export default {
   addProduct:
-    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/file/uploadProduct",
+    "https://immense-stream-25766.herokuapp.com/api/file/uploadProduct",
   fetchProducts:
-    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/file/fetchProducts?page=",
-  fetchProductImg:
-    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/file/image/",
-  pay: "https://webdevpractice-infamousgodhand.c9users.io:8081/api/payment",
-  register:
-    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/auth/register",
-  login:
-    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/auth/login",
-  history: "https://webdevpractice-infamousgodhand.c9users.io:8081/api/history"
+    "https://immense-stream-25766.herokuapp.com/api/file/fetchProducts?page=",
+  fetchProductImg: "https://immense-stream-25766.herokuapp.com/api/file/image/",
+  pay: "https://immense-stream-25766.herokuapp.com/api/payment",
+  register: "https://immense-stream-25766.herokuapp.com/api/auth/register",
+  login: "https://immense-stream-25766.herokuapp.com/api/auth/login",
+  history: "https://immense-stream-25766.herokuapp.com/api/history"
 };
