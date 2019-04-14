@@ -1,6 +1,6 @@
 export default {
   addProduct:
-    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/file/uploadProduct",
+    "https://immense-stream-25766.herokuapp.com/api/file/uploadProduct",
   fetchProducts:
     "https://immense-stream-25766.herokuapp.com/api/file/fetchProducts?page=",
   fetchProductImg: "https://immense-stream-25766.herokuapp.com/api/file/image/",
